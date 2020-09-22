@@ -1,14 +1,31 @@
-﻿using System.Dynamic;
+﻿using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
 
 namespace QuickBuy.Dominio.Entidades
 {
-    public class Entidade
+    public abstract class Entidade
     {
-        public int Id {get;set;}
+        public List<string> _mensagensValidacao { get; set; }
+        private List<string> mensagemValidacao
+        {
+            get { return _mensagensValidacao ?? (_mensagensValidacao = new List<string>()); }
+        }
 
-        public string Email { get; set; }
+        protected void LimparMensagensValidacao()
+        {
+            mensagemValidacao.Clear();
+        }
+        protected void AdicionarCritica(string mensagem)
+        {
+            mensagemValidacao.Add(mensagem);
+        }
 
-        public string Senha { get; set; }
+        public abstract void Validate();
+        protected bool EhValido
+        {
+            get { return !(mensagemValidacao.Any()); }
+        }
 
 
     }

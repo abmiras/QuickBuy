@@ -18,7 +18,7 @@ namespace QuickBuy.Dominio.Entidades
         public string EnderecoCompleto { get; set; }
         public  int NumeroEndereco { get; set; }
 
-        public int FormaPagamentoID { get; set; }
+        public int FormaPagamentoId { get; set; }
 
         public FormaPagamento FormaPagamento { get; set; }
 
@@ -35,6 +35,8 @@ namespace QuickBuy.Dominio.Entidades
 
             if (string.IsNullOrEmpty(CEP))
                 AdicionarCritica("Crítica - CEP deve estar preenchido");
+            if (FormaPagamentoId == 0 )
+                AdicionarCritica("Não foi informado a forma de pagamento");
         }
     }
 }

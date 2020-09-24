@@ -1,14 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using QuickBuy.Dominio.Entidades;
 using System;
 
 namespace QuickBuy.Repositorio.Config
 {
-    public class ItemPedidoConfiguration : IEntityTypeConfiguration<ItemPedidoConfiguration>
+    public class ItemPedidoConfiguration : IEntityTypeConfiguration<ItemPedido>
     {
-        public void Configure(EntityTypeBuilder<ItemPedidoConfiguration> builder)
+        public void Configure(EntityTypeBuilder<ItemPedido> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(i => i.Id);
+            builder
+                .Property(i => i.ProdutoId)
+                .IsRequired();
+            builder
+                .Property(i => i.Quantidade)
+                .IsRequired();
         }
+
     }
 }

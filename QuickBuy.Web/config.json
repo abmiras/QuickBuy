@@ -1,8 +1,7 @@
 //aqui vai string ed conexa do db
 
 {
-  "Chave": "ValorChave",
-  "ConnectionStrings": {
+   "ConnectionStrings": {
     "SqlServerConnectio": "",
     "QuickBuyDB": "server=localhost;uid=root;pwd=AcessoAoBanco123!@#;database=QuickBuyDB"
   }

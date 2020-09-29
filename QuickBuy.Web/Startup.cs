@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -14,7 +15,8 @@ namespace QuickBuy.Web
 {
     public class Startup
     {
-
+                 
+            
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -30,9 +32,9 @@ namespace QuickBuy.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var connectionString = Configuration.GetConnectionString("QuickBuyDB");
 
-            services.AddDbContext<QuickBuyContexto>(option => 
+            services.AddDbContext<QuickBuyContexto>(option =>
                                                     option.UseLazyLoadingProxies()
-                                                    .UseMySql(connectionString,m => m.MigrationsAssembly("QuickBuy.Repositorio")));
+                                                    .UseMySql(connectionString, m => m.MigrationsAssembly("QuickBuy.Repositorio")));
 
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 
@@ -77,10 +79,11 @@ namespace QuickBuy.Web
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
-                                    }
+                    //spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+                }
             });
         }
     }
 }
+

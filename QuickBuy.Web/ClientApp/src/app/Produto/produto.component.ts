@@ -14,6 +14,8 @@ export class ProdutoComponent { //nome das classes com maisuclo por conta da con
   public obterNome(): string
   {
     return "Samsung";
+
+
     //return this.nome;
   }
   
